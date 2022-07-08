@@ -1,7 +1,7 @@
 /* Color custom properties */
 
 body {
-  border: 30px solid purple !important;
+  border: 30px solid purple !important
 }
 
 :root,
