@@ -23,6 +23,6 @@ jobs:
       - name: Deploy
         env:
           SHOPIFY_FLAG_STORE: '${{ secrets.SHOP_STORE }}'
-          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOP_PASSWORD }}
+          SHOPIFY_CLI_THEME_TOKEN: '${{ secrets.SHOP_PASSWORD }}'
           SHOPIFY_CLI_TTY: 0
-        run: shopify theme push -d 
+        run: shopify theme push -d -f --password '${{ secrets.SHOP_STORE }}' --store '${{ secrets.SHOP_STORE }}'
