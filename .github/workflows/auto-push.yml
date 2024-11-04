@@ -13,15 +13,16 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            console.log(JSON.stringify(context), context.payload);
-            const issue_number = context.payload.pull_request.number;
-            const commentBody = "test!";
-            await github.rest.issues.createComment({
+            const output = `# test`;
+  
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number,
-              body: commentBody
-            });
+              body: output
+            })
+
+            
       # - uses: actions/setup-node@v3
       #   with:
       #     node-version: 18
