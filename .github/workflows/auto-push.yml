@@ -13,6 +13,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            console.log(JSON.stringify(context), context.payload);
             const issue_number = context.payload.pull_request.number;
             const commentBody = "test!";
             await github.rest.issues.createComment({
