@@ -13,12 +13,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { owner, repo } = context.repo;
-            const issue_number = context.issue.number;
-            const commentBody = "This is a comment from the GitHub Action!";
+            const issue_number = context.payload.pull_request.number;
+            const commentBody = "test!";
             await github.rest.issues.createComment({
-              owner,
-              repo,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               issue_number,
               body: commentBody
             });
