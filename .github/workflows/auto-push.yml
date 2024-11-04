@@ -1,9 +1,9 @@
 name: CI Build and Test
 
-on: [push]
-  # pull_request:
-  #   types: [ opened ]
-  #   branches: [ main ]
+on:
+  pull_request:
+    types: [ opened ]
+    branches: [ main ]
 
 jobs:
   deploy:
@@ -31,18 +31,15 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const preview_url = process.env.PREVIEW_URL;
-            console.log('>>', preview_url)
 
-            # if (!preview_url) {
-            #   throw new Error('Preview URL not found.');
-            # }
+            if (!preview_url) {
+              throw new Error('Preview URL not found.');
+            }
 
-            # const output = `The theme has been deployed. You can preview it here: ${preview_url}`;
-            # await github.rest.issues.createComment({
-            #   issue_number: context.issue.number,
-            #   owner: context.repo.owner,
-            #   repo: context.repo.repo,
-            #   body: output
-            # })
-
-            
+            const output = `The theme has been deployed. You can preview it here: ${preview_url}`;
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
