@@ -17,7 +17,7 @@ jobs:
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli
       - name: Push temporary theme
-        run: shopify theme push -d -f --password ${{ secrets.SHOPIFY_PASSWORD }} --store ${{ secrets.SHOP_STORE }} --json > deployment_output.json
+        run: shopify theme push -d -f --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com --json > deployment_output.json
       - name: Read temporary theme URL
         id: parse_output
         run: |
