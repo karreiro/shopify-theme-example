@@ -1,9 +1,9 @@
 name: CI Build and Test
 
-on:
-  pull_request:
-    types: [ opened ]
-    branches: [ main ]
+on: [push]
+  # pull_request:
+  #   types: [ opened ]
+  #   branches: [ main ]
 
 jobs:
   deploy:
@@ -23,24 +23,26 @@ jobs:
         run: |
           cat deployment_output.json
           preview_url=$(cat deployment_output.json | jq -r '.theme.preview_url')
-          echo "preview_url=${preview_url}" >> $GITHUB_ENV
+          echo "PREVIEW_URL=${preview_url}"
+          echo "PREVIEW_URL=${preview_url}" >> $GITHUB_ENV
       - name: Post a comment
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const preview_url = process.env.PREVIEW_URL;
+            console.log('>>', preview_url)
 
-            if (!preview_url) {
-              throw new Error('Preview URL not found.');
-            }
+            # if (!preview_url) {
+            #   throw new Error('Preview URL not found.');
+            # }
 
-            const output = `The theme has been deployed. You can preview it here: ${preview_url}`;
-            await github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
+            # const output = `The theme has been deployed. You can preview it here: ${preview_url}`;
+            # await github.rest.issues.createComment({
+            #   issue_number: context.issue.number,
+            #   owner: context.repo.owner,
+            #   repo: context.repo.repo,
+            #   body: output
+            # })
 
             
