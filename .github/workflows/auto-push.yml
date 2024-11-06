@@ -23,9 +23,13 @@ jobs:
         run: |
           cat deployment_output.json
           preview_url=$(cat deployment_output.json | jq -r '.theme.preview_url')
-          editor_url=$(cat deployment_output.json | jq -r '.theme.theme.editor_url')
+          editor_url=$(cat deployment_output.json | jq -r '.theme.editor_url')
+          theme_id=$(cat deployment_output.json | jq -r '.theme.theme.id')
           echo "PREVIEW_URL=${preview_url}" >> $GITHUB_ENV
           echo "EDITOR_URL=${editor_url}" >> $GITHUB_ENV
+          echo "THEME_ID=${theme_id}" >> $GITHUB_ENV
+      - name: Rename theme with PR name
+        run: shopify theme rename -t $THEME_ID --name pr-repview-${{ github.event.pull_request.number }}"
       - name: Post a comment
         uses: actions/github-script@v6
         with:
