@@ -1,9 +1,9 @@
 name: CI Build and Test
 
-on: [push]
-  # pull_request:
-  #   types: [ opened ]
-  #   branches: [ main ]
+on:
+  pull_request:
+    types: [ opened ]
+    branches: [ main ]
 
 jobs:
   deploy:
@@ -29,7 +29,7 @@ jobs:
           echo "EDITOR_URL=${editor_url}" >> $GITHUB_ENV
           echo "THEME_ID=${theme_id}" >> $GITHUB_ENV
       - name: Rename theme with PR name
-        run: shopify theme rename --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com -t $THEME_ID --name pr-repview-${{ github.event.pull_request.number }}
+        run: 'shopify theme rename --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com -t $THEME_ID --name pr-repview-${{ github.event.number }}'
       - name: Post a comment
         uses: actions/github-script@v6
         with:
