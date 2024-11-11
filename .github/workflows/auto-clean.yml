@@ -1,0 +1,20 @@
+name: CI clean temporary theme
+
+on:
+  pull_request:
+    types: [ closed ]
+    branches: [ main ]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli
+      - name: Clear temporary theme
+        run: shopify theme delete -f -t pr-repview-${{ github.event.number }}'
