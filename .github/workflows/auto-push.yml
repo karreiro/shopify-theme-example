@@ -28,8 +28,9 @@ jobs:
           echo "PREVIEW_URL=${preview_url}" >> $GITHUB_ENV
           echo "EDITOR_URL=${editor_url}" >> $GITHUB_ENV
           echo "THEME_ID=${theme_id}" >> $GITHUB_ENV
-      - name: Rename theme with PR name
-        run: 'shopify theme rename --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com -t $THEME_ID --name pr-repview-${{ github.event.number }}'
+      - name: Rename theme with Branch name
+        run: |
+          shopify theme rename --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com -t $THEME_ID --name "pr-preview-${{ github.head_ref }}"
       - name: Post a comment
         uses: actions/github-script@v6
         with:
