@@ -18,5 +18,5 @@ jobs:
         run: npm install -g @shopify/cli
       - name: Clear temporary theme
         run: |
-          branch_name=$(git rev-parse --abbrev-ref HEAD)
+          branch_name=${GITHUB_REF#refs/heads/}
           shopify theme delete -f -t "pr-preview-$branch_name" --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com
