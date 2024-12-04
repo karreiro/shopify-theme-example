@@ -30,7 +30,8 @@ jobs:
           echo "THEME_ID=${theme_id}" >> $GITHUB_ENV
       - name: Rename theme with Branch name
         run: |
-          shopify theme rename --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com -t $THEME_ID --name "pr-preview-${{ env.BRANCH_NAME }}"
+          branch_name=$(git rev-parse --abbrev-ref HEAD)
+          shopify theme rename --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com -t $THEME_ID --name "pr-preview-$branch_name"
       - name: Post a comment
         uses: actions/github-script@v6
         with:
