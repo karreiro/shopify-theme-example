@@ -1,0 +1,39 @@
+name: CI Build and Test
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Get PR number
+        id: get_pr
+        uses: octokit/request-action@v2.x
+        with:
+          route: GET /repos/${{ github.repository }}/pulls
+          query: |
+            head=${{ github.repository_owner }}:${GITHUB_REF##*/}
+            state=open
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Save PR Number to Environment Variable
+        if: ${{ steps.get_pr.outputs.data != '[]' }}
+        run: |
+          PR_NUMBER=$(echo '${{ steps.get_pr.outputs.data }}' | jq '.[0].number')
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+
+      - name: Echo PR Number
+        run: |
+          echo "Hello, PR #${PR_NUMBER}"
