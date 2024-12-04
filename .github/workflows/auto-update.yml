@@ -33,9 +33,14 @@ jobs:
         run: |
           PR_NUMBER=$(echo '${{ steps.get_pr.outputs.data }}' | jq '.[0].number')
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
-
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli
       - name: Update theme with the latest commit
-        run: |
-          set +e
+        run:
           shopify theme push -t pr-repview-$PR_NUMBER --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com
+        continue-on-error: true
 
