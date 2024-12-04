@@ -41,6 +41,5 @@ jobs:
         run: npm install -g @shopify/cli
       - name: Update theme with the latest commit
         run:
-          shopify theme push -t "pr-preview-${{ github.head_ref }}" --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com
+          shopify theme push -t "pr-preview-${{ env.BRANCH_NAME }}" --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com
         continue-on-error: true
-
