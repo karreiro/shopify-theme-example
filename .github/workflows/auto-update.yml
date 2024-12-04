@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -34,6 +34,8 @@ jobs:
           PR_NUMBER=$(echo '${{ steps.get_pr.outputs.data }}' | jq '.[0].number')
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
 
-      - name: Echo PR Number
+      - name: Update theme with the latest commit
         run: |
-          echo "Hello, PR #${PR_NUMBER}"
+          set +e
+          shopify theme push -t pr-repview-$PR_NUMBER --password ${{ secrets.SHOPIFY_PASSWORD }} --store cheap-comic-strip-com.myshopify.com
+
