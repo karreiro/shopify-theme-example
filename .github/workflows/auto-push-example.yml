@@ -15,10 +15,10 @@ jobs:
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli
 
-      - name: Deploy
-        env:
+      - name: Upload theme
         run: |
           shopify theme push \
             --json \
+            --theme Dawn \
             --store cheap-comic-strip-com.myshopify.com \
             --password ${{ secrets.SHOPIFY_PASSWORD }}
