@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "rich_text": {
@@ -13,7 +22,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
           }
         },
         "button": {
@@ -51,7 +60,7 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Shop all...",
-            "button_link_1": "shopify:\/\/collections\/all",
+            "button_link_1": "shopify://collections/all",
             "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "",
@@ -64,7 +73,8 @@
         "button"
       ],
       "settings": {
-        "image_2": "shopify:\/\/shop_images\/Screenshot_2022-11-14_at_17.50.51.png",
+        "my_font": "roboto_slab_n3",
+        "image_2": "shopify://shop_images/Screenshot_2022-11-14_at_17.50.51.png",
         "image_overlay_opacity": 0,
         "image_height": "medium",
         "adapt_height_first_image": false,
@@ -100,7 +110,7 @@
         "video": {
           "type": "video",
           "settings": {
-            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description": "Describe the video",
             "image_padding": false
           }
@@ -137,7 +147,7 @@
       "type": "video",
       "settings": {
         "heading": "Video",
-        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
         "description": "",
         "full_width": false,
         "color_scheme": "background-1",
@@ -152,7 +162,7 @@
           "type": "column",
           "settings": {
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
             "link": ""
           }
@@ -161,7 +171,7 @@
           "type": "column",
           "settings": {
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
             "link": ""
           }
@@ -170,7 +180,7 @@
           "type": "column",
           "settings": {
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
             "link": ""
           }
